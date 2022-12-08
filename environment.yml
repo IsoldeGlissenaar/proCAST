@@ -5,7 +5,6 @@ dependencies:
   - matplotlib
   - numpy
   - xarray
-  - pandas
   - scipy
   - cartopy
   - streamlit
