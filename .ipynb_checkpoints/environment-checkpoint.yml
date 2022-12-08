@@ -2,7 +2,7 @@ name: procast
 channels:
   - defaults
 dependencies:
-  - matplotlib=3.1.1
+  - matplotlib
   - numpy
   - xarray
   - scipy=1.5.2
