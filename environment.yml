@@ -2,10 +2,10 @@ name: procast
 channels:
   - defaults
 dependencies:
-  - matplotlib
+  - matplotlib==3.1.1
   - numpy
   - xarray
-  - scipy
+  - scipy==1.5.2
   - pandas
   - cartopy
   - streamlit
