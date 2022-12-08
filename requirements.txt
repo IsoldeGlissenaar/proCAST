@@ -1,7 +1,7 @@
 matplotlib
 numpy==1.19.2
 xarray==0.15.0
-pandas==0.25.3
+pandas
 scipy
 GEOS==3.7.2
 Shapely
