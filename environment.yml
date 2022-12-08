@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+dependencies:
+  - matplotlib
+  - numpy
+  - xarray
+  - pandas
+  - scipy
+  - cartopy
+  - streamlit
