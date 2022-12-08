@@ -3,22 +3,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - matplotlib
   - numpy
   - xarray
   - pandas
   - scipy
-  - scikit-learn
-  - matplotlib
   - cartopy
   - calendar
-  - shapefile
-  - shapely
-  - glob
-  - geopandas
-  - h5py
-  - hdf4
-  - hdf5
-  - rasterio
-  - calendar
-  - shapefile
-  - glob
+  - streamlit
