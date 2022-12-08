@@ -20,4 +20,6 @@ dependencies:
   - hdf4
   - hdf5
   - rasterio
-  
+  - calendar
+  - shapefile
+  - glob
