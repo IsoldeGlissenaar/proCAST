@@ -1,10 +1,10 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
 import numpy as np
 import xarray as xr
 from scipy import stats
 import calendar
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
