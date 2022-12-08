@@ -1,3 +1,4 @@
+name: procast
 channels:
   - conda-forge
 dependencies:
