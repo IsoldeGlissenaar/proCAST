@@ -1,8 +1,11 @@
 name: procast
+channels:
+  - defaults
 dependencies:
   - matplotlib
   - numpy
   - xarray
   - scipy
+  - pandas
   - cartopy
   - streamlit
