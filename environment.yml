@@ -1,6 +1,4 @@
 name: procast
-channels:
-  - conda-forge
 dependencies:
   - matplotlib
   - numpy
