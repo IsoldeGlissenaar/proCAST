@@ -1,14 +1,5 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-import matplotlib
-import cartopy.crs as ccrs
-import numpy as np
-import xarray as xr
-import pandas as pd
-from scipy import stats
-import calendar
-import cartopy.feature as cfeature
-land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
 st.header('Opertational SIT proxy')
 st.write("Work in progress: this page will display this week's ice thickness soon...")
