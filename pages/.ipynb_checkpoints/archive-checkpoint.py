@@ -29,7 +29,7 @@ if password=='Bristol':
 
 
 
-        direc = '../data/'
+        direc = './data/'
         sit = xr.open_dataset(direc+'predic_sit_19932020_'+f"{m:02}"+'.nc')
         y = np.where(sit.year==year)[0][0]
 
@@ -58,7 +58,7 @@ if password=='Bristol':
         else:
             year_1, year_2 = st.sidebar.select_slider('Range years (1992-2020)', options=(np.arange(1992,2021,1)), value=[1992,2020], help='Select a starting and ending year for your trend plot') 
 
-        direc = '../data/'
+        direc = './data/'
         sit = xr.open_dataset(direc+'predic_sit_19932020_'+f"{m:02}"+'.nc')
         sit = sit.drop(1997, dim='year')
         if m==12:
