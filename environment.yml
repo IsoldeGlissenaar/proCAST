@@ -1,7 +1,5 @@
-name: proxysit
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - matplotlib
   - numpy
