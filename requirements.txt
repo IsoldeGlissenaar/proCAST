@@ -1,6 +1,6 @@
 numpy
 eccodes
-xarray[io]
+xarray==0.15.0
 scipy
 matplotlib
 shapely
