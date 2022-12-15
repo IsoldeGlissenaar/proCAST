@@ -1,5 +1,5 @@
 import streamlit as st
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 st.header('Opertational SIT proxy')
 st.write("Work in progress: this page will display this week's ice thickness soon...")
