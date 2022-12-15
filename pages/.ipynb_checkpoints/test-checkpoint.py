@@ -16,12 +16,8 @@ ax = plt.axes(projection=ccrs.Orthographic(central_longitude=-99, central_latitu
 ax.coastlines(resolution='50m',linewidth=0.5)
 ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
 ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
-im = plt.scatter(-120,75,c=2, cmap='Spectral_r',vmin=0,vmax=3,s=6, transform=ccrs.PlateCarree())
+im = plt.scatter(-120,75,c='red', s=6, transform=ccrs.PlateCarree())
 ax.add_feature(land_50m, facecolor='#eeeeee')
-cbar = fig.colorbar(im, ax=ax, fraction=0.029, pad=0.04,extend='max')
-cbar.ax.locator_params(nbins=7)
-cbar.ax.tick_params(labelsize=8)
-cbar.set_label(label='m',fontsize=10)
 plt.title(f'Testfigure')
 
 st.pyplot(fig=fig)
