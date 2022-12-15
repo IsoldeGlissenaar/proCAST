@@ -1,0 +1,10 @@
+numpy
+eccodes
+xarray[io]
+scipy
+matplotlib
+shapely
+pyshp
+pyproj
+cartopy
+streamlit
