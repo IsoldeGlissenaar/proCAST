@@ -24,14 +24,14 @@ date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
 
 #set up the file path and read the shapefile data
 #Western Arctic
-fp = '../data/operational/'+date+'_CEXPREA_withsit.shp'
+fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
 data = gpd.read_file(fp)
 data = data.to_crs(epsg=4326)
 
 
 #set up the file path and read the shapefile data
 #Eastern Arctic
-fp = '../data/operational/'+date+'_CEXPRWA_withsit.shp'
+fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
 data2 = gpd.read_file(fp)
 data2 = data2.to_crs(epsg=4326)
 
