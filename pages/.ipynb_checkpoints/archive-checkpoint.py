@@ -31,20 +31,20 @@ if option=='Sea ice thickness':
     sit = xr.open_dataset(direc+'predic_sit_19932020_'+f"{m:02}"+'.nc')
     y = np.where(sit.year==year)[0][0]
 
-    fig=plt.figure(dpi=200)
-    ax = plt.axes(projection=ccrs.Orthographic(central_longitude=-99, central_latitude=70, globe=None))
-    ax.coastlines(resolution='50m',linewidth=0.5)
-    ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
-    ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
-    im = plt.scatter(sit.lon, sit.lat, c=sit.sit_mean[y,:].values, cmap='Spectral_r',vmin=0,vmax=3,s=6, transform=ccrs.PlateCarree())
-    ax.add_feature(land_50m, facecolor='#eeeeee')
-    cbar = fig.colorbar(im, ax=ax, fraction=0.029, pad=0.04,extend='max')
-    cbar.ax.locator_params(nbins=7)
-    cbar.ax.tick_params(labelsize=8)
-    cbar.set_label(label='m',fontsize=10)
-    plt.title(f'Proxy sea ice thickness ({calendar.month_name[m]} {str(year)})')
+#     fig=plt.figure(dpi=200)
+#     ax = plt.axes(projection=ccrs.Orthographic(central_longitude=-99, central_latitude=70, globe=None))
+#     ax.coastlines(resolution='50m',linewidth=0.5)
+#     ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
+#     ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
+#     im = plt.scatter(sit.lon, sit.lat, c=sit.sit_mean[y,:].values, cmap='Spectral_r',vmin=0,vmax=3,s=9, transform=ccrs.PlateCarree())
+#     ax.add_feature(land_50m, facecolor='#eeeeee')
+#     cbar = fig.colorbar(im, ax=ax, fraction=0.029, pad=0.04,extend='max')
+#     cbar.ax.locator_params(nbins=7)
+#     cbar.ax.tick_params(labelsize=8)
+#     cbar.set_label(label='m',fontsize=10)
+#     plt.title(f'Proxy sea ice thickness ({calendar.month_name[m]} {str(year)})')
 
-    st.pyplot(fig=fig)
+#     st.pyplot(fig=fig)
 
 
 
@@ -74,21 +74,21 @@ if option=='Trends':
         trend_sit[i], intercept, r_value, p_value[i], std_err = stats.linregress(x, y)
 
 
-    fig=plt.figure(dpi=200)
-    ax = plt.axes(projection=ccrs.Orthographic(central_longitude=-99, central_latitude=70, globe=None))
-    ax.coastlines(resolution='50m',linewidth=0.5)
-    ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
-    ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
-    im = plt.scatter(sit.lon, sit.lat, c=trend_sit*100, cmap='RdBu',vmin=-3,vmax=3,s=8,transform=ccrs.PlateCarree())
-    plt.scatter(sit.lon[p_value<0.05], sit.lat[p_value<0.05], facecolors='none',
-                s=9, edgecolor='black', linewidth=0.2, transform=ccrs.PlateCarree())
-    ax.add_feature(land_50m, facecolor='#eeeeee')
-    cbar = fig.colorbar(im,ax=ax,fraction=0.026, pad=0.04,extend='both')
-    cbar.ax.locator_params(nbins=7)
-    cbar.ax.tick_params(labelsize=8)
-    cbar.set_label(label='cm/yr',fontsize=10,fontname='Arial')
-    plt.title(f'SIT trend ({calendar.month_name[int(m)]} {str(year_1)}-{str(year_2)})', fontsize=10, fontname='Arial')
+#     fig=plt.figure(dpi=200)
+#     ax = plt.axes(projection=ccrs.Orthographic(central_longitude=-99, central_latitude=70, globe=None))
+#     ax.coastlines(resolution='50m',linewidth=0.5)
+#     ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
+#     ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
+#     im = plt.scatter(sit.lon, sit.lat, c=trend_sit*100, cmap='RdBu',vmin=-3,vmax=3,s=9,transform=ccrs.PlateCarree())
+#     plt.scatter(sit.lon[p_value<0.05], sit.lat[p_value<0.05], facecolors='none',
+#                 s=10, edgecolor='black', linewidth=0.2, transform=ccrs.PlateCarree())
+#     ax.add_feature(land_50m, facecolor='#eeeeee')
+#     cbar = fig.colorbar(im,ax=ax,fraction=0.026, pad=0.04,extend='both')
+#     cbar.ax.locator_params(nbins=7)
+#     cbar.ax.tick_params(labelsize=8)
+#     cbar.set_label(label='cm/yr',fontsize=10,fontname='Arial')
+#     plt.title(f'SIT trend ({calendar.month_name[int(m)]} {str(year_1)}-{str(year_2)})', fontsize=10, fontname='Arial')
 
-    st.pyplot(fig=fig)
+#     st.pyplot(fig=fig)
 
 
