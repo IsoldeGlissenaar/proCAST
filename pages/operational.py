@@ -55,7 +55,7 @@ fig.update_geos(projection_type="orthographic",resolution=50)
 fig.update_layout(
     title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}'
 )
-fig.update(layout = dict(title=dict(x=0.5)))
+#fig.update(layout = dict(title=dict(x=0.5)))
 fig.update_layout(
     margin={"r":0,"t":30,"l":10,"b":10},
     coloraxis_colorbar={

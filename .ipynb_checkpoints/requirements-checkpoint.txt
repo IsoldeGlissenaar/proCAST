@@ -7,7 +7,7 @@ shapely
 pyshp
 pyproj
 cartopy
-streamlit
+streamlit>=1.10.0
 plotly
 geopandas
 datetime
