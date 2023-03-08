@@ -4,7 +4,9 @@ st.header('Operational SIT proxy')
 st.write("Latest ice conditions:")
 
 #===================================
-
+import sys
+sys.path.append('./suboptions/')
+import download
 import pandas as pd
 import matplotlib.pyplot as plt #if using matplotlib
 import plotly.express as px #if using plotly
@@ -64,5 +66,8 @@ fig.update_geos(fitbounds="locations", visible=True,
 
 st.plotly_chart(fig)
 
+merge = pd.concat([data, data2])
+download.add_downloadbutton_shp(date, merge)
 
 
+    
