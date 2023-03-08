@@ -26,29 +26,25 @@ date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
 #Western Arctic
 fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
 data = gpd.read_file(fp)
-data = data.to_crs(epsg=4326)
 
 
 #set up the file path and read the shapefile data
 #Eastern Arctic
 fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
 data2 = gpd.read_file(fp)
-data2 = data2.to_crs(epsg=4326)
-
-
-#merged = pd.concat([data, data2])
-
 
 #Create figure
 fig = px.choropleth(data, geojson=data.geometry, 
                     locations=data.index, color="sit",
                     width=1000,
                     height=500,
-                   color_continuous_scale="Spectral_r")
+                    color_continuous_scale="Spectral_r",
+                    hover_data = ['sit'])
 fig2 = px.choropleth(data2, geojson=data2.geometry, 
                     locations=data2.index, color="sit",
                     width=1000, height=500,
-                   color_continuous_scale="Spectral_r")
+                    color_continuous_scale="Spectral_r", 
+                    hover_data=["sit"])
 fig.add_trace(fig2.data[0])    
 fig.update_layout(
         geo = dict(
@@ -59,19 +55,14 @@ fig.update_layout(
             countrywidth = 0.5,
             subunitwidth = 0.5
         ),
+        title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
+        margin={"r":0,"t":30,"l":10,"b":10},
+        coloraxis_colorbar={'title':'SIT [m]'}
     )
-fig.update_geos(fitbounds="locations", visible=True)
-fig.update_geos(projection_type="orthographic",resolution=50)
-fig.update_layout(
-    title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}'
-)
-#fig.update(layout = dict(title=dict(x=0.5)))
-fig.update_layout(
-    margin={"r":0,"t":30,"l":10,"b":10},
-    coloraxis_colorbar={
-        'title':'SIT [m]'})
+fig.update_geos(fitbounds="locations", visible=True,
+                projection_type="orthographic",resolution=50)
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig)
 
 
 
