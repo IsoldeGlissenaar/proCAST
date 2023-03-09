@@ -18,20 +18,20 @@ st.write("Plot proxy sea ice thickness from a Random Forest Regression using CIS
 
 
 
-# option = st.selectbox(
-#     'What would you like to plot?',
-#     ('Sea ice thickness', 'Trends'))
+option = st.selectbox(
+    'What would you like to plot?',
+    ('Sea ice thickness', 'Trends'))
 
-# if option=='Sea ice thickness':
+if option=='Sea ice thickness':
     
-#     st.write('Select year and month to plot')
-#     m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Sel ect a month to display')
-#     year = st.select_slider('Year (1996-2020)', 
-#                                     options=(np.arange(1996,2021,1)), 
-#                                     help='Select a year to display')
+    st.write('Select year and month to plot')
+    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Sel ect a month to display')
+    year = st.select_slider('Year (1996-2020)', 
+                                    options=(np.arange(1996,2021,1)), 
+                                    help='Select a year to display')
 
 
-#     figs.sitfig(m,year)
+    figs.sitfig(m,year)
 
 
 
