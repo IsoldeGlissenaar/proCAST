@@ -16,7 +16,7 @@ from shapely.geometry import Point, shape
 def sittrendfig(m,year_1,year_2):
     
     direc = './data/'
-    sit = xr.open_dataset(direc+'predic_sit_19962020_'+f"{m:02}"+'.nc')
+    sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     if (m==12)&(year_1==1996):
         year_1 = 1997
     elif m<5:

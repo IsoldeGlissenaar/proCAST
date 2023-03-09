@@ -11,7 +11,7 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
 def sitfig(m,year):
     direc = './data/'
-    sit = xr.open_dataset(direc+'predic_sit_19962020_'+f"{m:02}"+'.nc')
+    sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     y = np.where(sit.year==year)[0][0]
 
     fig=plt.figure(dpi=200)
