@@ -88,7 +88,7 @@ def timeline(m, year_1, year_2, name):
         region = 'cea12_00'
     
     direc = './data/'
-    sit = xr.open_dataset(direc+'predic_sit_19962020_'+f"{m:02}"+'.nc')
+    sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     if (m==12)&(year_1==1996):
         year_1 = 1997
     elif m<5:
@@ -99,7 +99,7 @@ def timeline(m, year_1, year_2, name):
     
     # Check in which CISIRR Region the grid cells are
     idx = []
-    shp1 = shp.Reader('C:/Users/zq19140/OneDrive - University of Bristol/Documents/SatelliteData/Howell/v200_CISIRR_Regions/v200_CISIRR_Regions_4326_merge.shp') #open the shapefile
+    shp1 = shp.Reader('./data/shape_regions/v200_CISIRR_Regions_4326_merge.shp') #open the shapefile
     all_shapes = shp1.shapes() # get all the polygons
     all_records = shp1.records()     
     len_f = sit.dims['n']

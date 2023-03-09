@@ -38,19 +38,19 @@ if option=='Sea ice thickness':
 
 if option=='Trends':
     st.write('Select starting and end year and month to plot')
-#     m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
-#     year_1, year_2 = st.select_slider('Range years (1996-2020)', 
-#                                         options=(np.arange(1996,2021,1)),
-#                                         value=[1996,2020], 
-#                                         help='Select a starting and ending year for your trend plot') 
+    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
+    year_1, year_2 = st.select_slider('Range years (1996-2020)', 
+                                        options=(np.arange(1996,2021,1)),
+                                        value=[1996,2020], 
+                                        help='Select a starting and ending year for your trend plot') 
 
-#     timeline.sittrendfig(m,year_1,year_2)
+    timeline.sittrendfig(m,year_1,year_2)
 
 
-#     # Plot timeline SIT for a given region
-#     st.write('Plot timeline and trend SIT for a given region:')
-#     location = st.selectbox(
-#         'Location',
-#         ('Full area', 'Arctic Ocean Periphery', 'Baffin Bay', 'Beaufort Sea', 'Parry Channel'))
+    # Plot timeline SIT for a given region
+    st.write('Plot timeline and trend SIT for a given region:')
+    location = st.selectbox(
+        'Location',
+        ('Full area', 'Arctic Ocean Periphery', 'Baffin Bay', 'Beaufort Sea', 'Parry Channel'))
 
-#     timeline.timeline(m,year_1,year_2, location)
+    timeline.timeline(m,year_1,year_2, location)
