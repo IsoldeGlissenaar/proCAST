@@ -25,7 +25,7 @@ option = st.selectbox(
 if option=='Sea ice thickness':
     
     st.write('Select year and month to plot')
-    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Sel ect a month to display')
+    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
     year = st.select_slider('Year (1996-2020)', 
                                     options=(np.arange(1996,2021,1)), 
                                     help='Select a year to display')
