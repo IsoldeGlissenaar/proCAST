@@ -11,4 +11,3 @@ streamlit>=1.10.0
 plotly
 geopandas
 datetime
-netcdf4
