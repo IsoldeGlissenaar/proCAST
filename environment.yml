@@ -6,7 +6,10 @@ dependencies:
   - matplotlib
   - numpy
   - xarray
-  - scipy=1.5.2
+  - scipy
   - pandas
   - cartopy
+  - shapely
+  - plotly
+  - geopandas
   - streamlit
