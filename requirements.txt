@@ -6,6 +6,7 @@ matplotlib
 shapely
 pyshp
 pyproj
+geos
 cartopy
 streamlit>=1.10.0
 plotly
