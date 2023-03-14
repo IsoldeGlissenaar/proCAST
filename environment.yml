@@ -8,9 +8,13 @@ dependencies:
   - xarray
   - scipy
   - pandas
-  - cartopy
   - shapely
   - pyshp
   - plotly
   - geopandas
-  - netcdf4
+  - cartopy
+  - pip
+  - pip:
+    - datetime
+    - streamlit
+    - netcdf4
