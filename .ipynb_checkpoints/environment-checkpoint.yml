@@ -10,6 +10,7 @@ dependencies:
   - pandas
   - cartopy
   - shapely
+  - pyshp
   - plotly
   - geopandas
   - streamlit
