@@ -13,4 +13,4 @@ dependencies:
   - pyshp
   - plotly
   - geopandas
-  - streamlit
+  - netcdf4
