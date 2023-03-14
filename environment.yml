@@ -1,9 +1,9 @@
-name: procast
+name: procast2
 channels:
   - defaults
   - conda-forge
 dependencies:
-  - matplotlib
+  - matplotlib=3.5.2
   - numpy
   - xarray
   - scipy
