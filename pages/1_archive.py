@@ -27,8 +27,8 @@ if option=='Sea ice thickness':
     st.write('Select year and month to plot')
     m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
     year = st.select_slider('Year (1996-2020)', 
-                                    options=(np.arange(1996,2021,1)), 
-                                    help='Select a year to display')
+                             options=(np.arange(1996,2021,1)), 
+                             help='Select a year to display')
 
 
     figs.sitfig(m,year)
@@ -40,9 +40,9 @@ if option=='Trends':
     st.write('Select starting and end year and month to plot')
     m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
     year_1, year_2 = st.select_slider('Range years (1996-2020)', 
-                                        options=(np.arange(1996,2021,1)),
-                                        value=[1996,2020], 
-                                        help='Select a starting and ending year for your trend plot') 
+                                       options=(np.arange(1996,2021,1)),
+                                       value=[1996,2020], 
+                                       help='Select a starting and ending year for your trend plot') 
 
     timeline.sittrendfig(m,year_1,year_2)
 
