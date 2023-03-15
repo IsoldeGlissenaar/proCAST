@@ -13,6 +13,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
+st.write("Test matplotlib")
 
 fig = plt.figure()
 plt.scatter([0,1],[0,1])
