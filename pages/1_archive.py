@@ -44,7 +44,7 @@ if option=='Trends':
                                        value=[1996,2020], 
                                        help='Select a starting and ending year for your trend plot') 
 
-    timeline.sittrendfig(m,year_1,year_2)
+ #   timeline.sittrendfig(m,year_1,year_2)
 
 
     # Plot timeline SIT for a given region
@@ -53,4 +53,4 @@ if option=='Trends':
         'Location',
         ('Full area', 'Arctic Ocean Periphery', 'Baffin Bay', 'Beaufort Sea', 'Parry Channel'))
 
-    timeline.timeline(m,year_1,year_2, location)
+ #   timeline.timeline(m,year_1,year_2, location)
