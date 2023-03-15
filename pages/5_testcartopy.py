@@ -22,7 +22,7 @@ ax.coastlines(resolution='50m',linewidth=0.5)
 ax.set_extent([-140,-57,62,84],crs=ccrs.PlateCarree())
 ax.gridlines(linewidth=0.3, color='k', alpha=0.5, linestyle=':')
 ax.add_feature(land_50m, facecolor='#eeeeee')
-plt.title(f'Proxy sea ice thickness ({calendar.month_name[m]} {str(year)})')
+plt.title(f'Proxy sea ice thickness ')
 
 st.pyplot(fig=fig)
 
