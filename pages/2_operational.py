@@ -37,16 +37,16 @@ data2 = gpd.read_file(fp)
 
 #Create figure
 fig = px.choropleth(data, geojson=data.geometry, 
-                    locations=data.index, color="sit",
+                    locations=data.index, color="SIT",
                     width=1000,
                     height=500,
                     color_continuous_scale="Spectral_r",
-                    hover_data = ['sit'])
+                    hover_data = ['SIT'])
 fig2 = px.choropleth(data2, geojson=data2.geometry, 
-                    locations=data2.index, color="sit",
+                    locations=data2.index, color="SIT",
                     width=1000, height=500,
                     color_continuous_scale="Spectral_r", 
-                    hover_data=["sit"])
+                    hover_data=["SIT"])
 fig.add_trace(fig2.data[0])    
 fig.update_layout(
         geo = dict(

@@ -1,0 +1,20 @@
+name: procast2
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - matplotlib=3.5.2
+  - numpy
+  - xarray
+  - scipy
+  - pandas
+  - shapely
+  - pyshp
+  - plotly
+  - geopandas
+  - cartopy
+  - pip
+  - pip:
+    - datetime
+    - streamlit
+    - netcdf4
