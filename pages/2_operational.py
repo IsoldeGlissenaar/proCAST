@@ -1,18 +1,18 @@
+import sys
+sys.path.append('./suboptions/')
+
+import calendar
+import datetime
+
+import download
+import geopandas as gpd
+import pandas as pd
+import plotly.express as px  # if using plotly
 import streamlit as st
+
 
 st.header('Operational SIT proxy')
 st.write("Latest ice conditions:")
-
-#===================================
-import sys
-sys.path.append('./suboptions/')
-import download
-import pandas as pd
-import matplotlib.pyplot as plt #if using matplotlib
-import plotly.express as px #if using plotly
-import geopandas as gpd
-import datetime
-import calendar
 
 #Get date of last ice chart
 today = datetime.date.today()
@@ -36,18 +36,18 @@ fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
 data2 = gpd.read_file(fp)
 
 #Create figure
-fig = px.choropleth(data, geojson=data.geometry, 
+fig = px.choropleth(data, geojson=data.geometry,
                     locations=data.index, color="SIT",
                     width=1000,
                     height=500,
                     color_continuous_scale="Spectral_r",
                     hover_data = ['SIT'])
-fig2 = px.choropleth(data2, geojson=data2.geometry, 
+fig2 = px.choropleth(data2, geojson=data2.geometry,
                     locations=data2.index, color="SIT",
                     width=1000, height=500,
-                    color_continuous_scale="Spectral_r", 
+                    color_continuous_scale="Spectral_r",
                     hover_data=["SIT"])
-fig.add_trace(fig2.data[0])    
+fig.add_trace(fig2.data[0])
 fig.update_layout(
         geo = dict(
             showland = True,
@@ -68,6 +68,3 @@ st.plotly_chart(fig)
 
 merge = pd.concat([data, data2])
 download.add_downloadbutton_shp(date, merge)
-
-
-    
