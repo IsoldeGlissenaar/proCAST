@@ -1,14 +1,14 @@
 numpy
+pandas
+geopandas
 eccodes
-xarray==0.15.0
 scipy
-matplotlib
-shapely
+xarray --no-binary=xarray
+netcdf4 --no-binary=netcdf4
+shapely --no-binary=shapely
+cartopy --no-binary=cartopy
 pyshp
 pyproj
-cartopy
-streamlit>=1.10.0
+matplotlib
 plotly
-geopandas
-datetime
-netcdf4
+streamlit

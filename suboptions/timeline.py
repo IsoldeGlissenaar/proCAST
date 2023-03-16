@@ -1,20 +1,17 @@
-import streamlit as st
+import cartopy.feature as cfeature
 import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+import shapefile as shp  # Requires the pyshp package
+import streamlit as st
 import xarray as xr
 from scipy import stats
-import plotly.graph_objects as go
-import plotly.express as px
-import calendar
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
-import shapefile as shp  # Requires the pyshp package
 from shapely.geometry import Point, shape
+
+land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
 
 def sittrendfig(m,year_1,year_2):
-    
     direc = './data/'
     sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     if (m==12)&(year_1==1996):
@@ -36,7 +33,7 @@ def sittrendfig(m,year_1,year_2):
 
     sit['trend'] = (['n'], trend_sit*100)
     sit['text'] = (['n'], (np.round(trend_sit*100,1)).astype(str))
-    
+
     #Create figure
     fig = go.Figure(data=go.Scattergeo(
         lon = sit['lon'][~np.isnan(trend_sit)],
@@ -74,9 +71,9 @@ def sittrendfig(m,year_1,year_2):
         margin={"r":0,"t":0,"l":0,"b":0})
 
     st.plotly_chart(fig, use_container_width=True)
-    
-     
-        
+
+
+
 def timeline(m, year_1, year_2, name):
     if name=='Beaufort Sea':
         region = 'cwa01_00'
@@ -86,7 +83,7 @@ def timeline(m, year_1, year_2, name):
         region = 'cwa04_00'
     elif name=='Baffin Bay':
         region = 'cea12_00'
-    
+
     direc = './data/'
     sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     if (m==12)&(year_1==1996):
@@ -96,17 +93,17 @@ def timeline(m, year_1, year_2, name):
 
     y1 = np.where(sit.year==year_1)[0][0]
     y2 = np.where(sit.year==year_2)[0][0]
-    
+
     # Check in which CISIRR Region the grid cells are
     idx = []
     shp1 = shp.Reader('./data/shape_regions/v200_CISIRR_Regions_4326_merge.shp') #open the shapefile
     all_shapes = shp1.shapes() # get all the polygons
-    all_records = shp1.records()     
+    all_records = shp1.records()
     len_f = sit.dims['n']
     location = []; p=0
     for i in range(len_f):
-        pt = (sit.lon.values[i], sit.lat.values[i])  
-        for k in range (len(all_shapes)):             
+        pt = (sit.lon.values[i], sit.lat.values[i])
+        for k in range (len(all_shapes)):
             boundary = all_shapes[k]
             if Point(pt).within(shape(boundary)):
                 location.append(all_records[k][3])
@@ -124,7 +121,6 @@ def timeline(m, year_1, year_2, name):
             if sit.location[i]==region:
                 idx.append(i)
 
-
     x = sit.year[y1:y2+1]
     y = np.nanmean(sit.sit_mean[y1:y2+1,idx],axis=1)
     x = x[np.array(~np.isnan(y))]
@@ -134,12 +130,11 @@ def timeline(m, year_1, year_2, name):
     slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
     trend_sit = slope
 
-    
     fig = px.line(x=sit.year[y1:y2+1], y=np.nanmean(sit.sit_mean[y1:y2+1,idx],axis=1),markers=True,
-                  labels={
-                     "y": "sea ice thickness (m)",
-                     "x": "year"
-                 })
+                labels={
+                    "y": "sea ice thickness (m)",
+                    "x": "year"
+                })
     fig.add_trace(go.Scatter(x=sit.year[y1:y2+1], y=slope*sit.year[y1:y2+1]+intercept,
                             line=dict(color='black', dash='dash'), hoverinfo='none'))
     fig.update(layout_showlegend=False)
@@ -155,6 +150,3 @@ def timeline(m, year_1, year_2, name):
                                         yref="paper"))
 
     st.plotly_chart(fig, use_container_width=True)
-
-    
-    
