@@ -1,14 +1,9 @@
 import calendar
 
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
 import xarray as xr
-
-land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
     
     

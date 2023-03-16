@@ -1,4 +1,4 @@
-import cartopy.feature as cfeature
+
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
@@ -8,7 +8,6 @@ import xarray as xr
 from scipy import stats
 from shapely.geometry import Point, shape
 
-land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m')
 
 
 def sittrendfig(m,year_1,year_2):
