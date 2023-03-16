@@ -1,7 +1,6 @@
-import io
-from zipfile import ZipFile
 import tempfile
-import geopandas as gpd
+from zipfile import ZipFile
+
 import streamlit as st
 
 
@@ -14,7 +13,7 @@ def save_shapefile_with_bytesio(dataframe,directory,date):
     zipObj.write(f"{directory}/{date}_CanadianArctic_chart_SIT.prj",arcname = 'user_shapefiles.prj')
     zipObj.write(f"{directory}/{date}_CanadianArctic_chart_SIT.shx",arcname = 'user_shapefiles.shx')
     zipObj.close()
-    
+
 def add_downloadbutton_shp(date, dataset):
     #download the geodataframe
     #we first create a temporary directory
@@ -28,4 +27,3 @@ def add_downloadbutton_shp(date, dataset):
                 file_name=date+"_CanadianArctic_chart_SIT.zip",
                 mime='application/zip',
             )
-        
