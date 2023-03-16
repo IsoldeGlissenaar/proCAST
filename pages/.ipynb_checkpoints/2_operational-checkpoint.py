@@ -46,6 +46,9 @@ date = get_date_lastchart()
 shp_wa = get_shpfile(date, 'WA')
 shp_ea = get_shpfile(date, 'EA')
 
+shp_wa["geometry"] = (shp_wa.to_crs(shp_wa.estimate_utm_crs()).simplify(1000).to_crs(shp_wa.crs))
+shp_ea["geometry"] = (shp_ea.to_crs(shp_ea.estimate_utm_crs()).simplify(1000).to_crs(shp_ea.crs))
+
 #Create figure
 fig = px.choropleth(shp_ea, geojson=shp_ea.geometry, 
                     locations=shp_ea.index, color="SIT",
@@ -77,11 +80,12 @@ fig.update_geos(fitbounds="locations", visible=True,
 
 st.plotly_chart(fig)
 
+# Add download button
 merge = pd.concat([shp_wa, shp_ea])
 download.add_downloadbutton_shp(date, merge)
 
 
-
+# Add reference citation
 st.markdown("""
 <style>
 .big-font {
@@ -89,7 +93,6 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-
 st.markdown('<p class="big-font">When using the data please cite:  \nGlissenaar, I. A., Landy, J. C., Babb, D. G., Dawson, G. J., and Howell, S. E. L.: A long-term proxy for sea ice thickness in the Canadian Arctic: 1996–2020, EGUsphere [preprint], https://doi.org/10.5194/egusphere-2023-269, 2023.</p>', unsafe_allow_html=True)
 
     
