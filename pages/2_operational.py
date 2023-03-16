@@ -24,10 +24,10 @@ def get_date_lastchart():
     else:
         date = monday_date - datetime.timedelta(weeks=1)
     date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
-    return date
+    return date, monday_date
 
 @st.cache_data
-def get_shpfile(date, location):
+def get_shpfile(date, location, monday_date):
     #set up the file path and read the shapefile data
     try:
         fp = './data/operational/'+date+'_CEXPR'+location+'_withsit.shp'
@@ -42,9 +42,9 @@ def get_shpfile(date, location):
             st.stop()
     return data
 
-date = get_date_lastchart()
-shp_wa = get_shpfile(date, 'WA')
-shp_ea = get_shpfile(date, 'EA')
+date, monday_date = get_date_lastchart()
+shp_wa = get_shpfile(date, 'WA', monday_date)
+shp_ea = get_shpfile(date, 'EA', monday_date)
 
 shp_wa["geometry"] = (shp_wa.to_crs(shp_wa.estimate_utm_crs()).simplify(1000).to_crs(shp_wa.crs))
 shp_ea["geometry"] = (shp_ea.to_crs(shp_ea.estimate_utm_crs()).simplify(1000).to_crs(shp_ea.crs))
@@ -74,7 +74,7 @@ fig.update_layout(
             countrywidth = 0.5,
             subunitwidth = 0.5),
         title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
-        margin={"r":0,"l":0,"t":0,"b":0},
+        margin={"r":0,"l":0,"t":10,"b":0},
         coloraxis_colorbar={'title':'SIT [m]'})
 fig.update_geos(fitbounds="locations", visible=True,
                 projection_type="stereographic",resolution=50,
