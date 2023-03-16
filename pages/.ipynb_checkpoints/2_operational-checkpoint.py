@@ -50,15 +50,20 @@ shp_wa["geometry"] = (shp_wa.to_crs(shp_wa.estimate_utm_crs()).simplify(1000).to
 shp_ea["geometry"] = (shp_ea.to_crs(shp_ea.estimate_utm_crs()).simplify(1000).to_crs(shp_ea.crs))
 
 #Create figure
-fig = px.choropleth(shp_ea, geojson=shp_ea.geometry, 
-                    locations=shp_ea.index, color="SIT",
+fig = px.choropleth(shp_ea, 
+                    geojson=shp_ea.geometry, 
+                    locations=shp_ea.index, 
+                    color="SIT",
                     width=1000,
-                    height=500,
+                    height=1000,
                     color_continuous_scale="Spectral_r",
                     hover_data = ['SIT'])
-fig2 = px.choropleth(shp_wa, geojson=shp_wa.geometry, 
-                    locations=shp_wa.index, color="SIT",
-                    width=1000, height=500,
+fig2 = px.choropleth(shp_wa, 
+                     geojson=shp_wa.geometry, 
+                    locations=shp_wa.index, 
+                     color="SIT",
+     #               width=2000, 
+     #                height=500,
                     color_continuous_scale="Spectral_r", 
                     hover_data=["SIT"])
 fig.add_trace(fig2.data[0])    
@@ -69,14 +74,12 @@ fig.update_layout(
             subunitcolor = "rgb(217, 217, 217)",
             countrycolor = "rgb(217, 217, 217)",
             countrywidth = 0.5,
-            subunitwidth = 0.5
-        ),
+            subunitwidth = 0.5),
         title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
-        margin={"r":0,"t":30,"l":10,"b":10},
-        coloraxis_colorbar={'title':'SIT [m]'}
-    )
+        margin={"r":0,"l":0,"t":0,"b":0},
+        coloraxis_colorbar={'title':'SIT [m]'})
 fig.update_geos(fitbounds="locations", visible=True,
-                projection_type="orthographic",resolution=50)
+                projection_type="stereographic",resolution=50)
 
 st.plotly_chart(fig)
 
