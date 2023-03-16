@@ -8,59 +8,53 @@ import sys
 sys.path.append('./suboptions/')
 import download
 import pandas as pd
-import matplotlib.pyplot as plt #if using matplotlib
 import plotly.express as px #if using plotly
 import geopandas as gpd
 import datetime
 import calendar
 
-#Get date of last ice chart
-today = datetime.date.today()
-monday_date = today + datetime.timedelta(days=-today.weekday())
-weekday_no = datetime.datetime.today().weekday()  # Mo=0, Thursday=3
-if weekday_no>=3:  #If Thursday or later in the week
-    date = monday_date
-else:
-    date = monday_date - datetime.timedelta(weeks=1)
-date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
-
-#set up the file path and read the shapefile data
-#Western Arctic
-try:
-    fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
-    data = gpd.read_file(fp)
-except:
-    try:
+@st.cache_data
+def get_date_lastchart():
+    #Get date of last ice chart
+    today = datetime.date.today()
+    monday_date = today + datetime.timedelta(days=-today.weekday())
+    weekday_no = datetime.datetime.today().weekday()  # Mo=0, Thursday=3
+    if weekday_no>=3:  #If Thursday or later in the week
+        date = monday_date
+    else:
         date = monday_date - datetime.timedelta(weeks=1)
-        fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
+    date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
+    return date
+
+@st.cache_data
+def get_shpfile(date, location):
+    #set up the file path and read the shapefile data
+    try:
+        fp = './data/operational/'+date+'_CEXPR'+location+'_withsit.shp'
         data = gpd.read_file(fp)
     except:
-        st.warning('Recent sea ice thickness product not yet available, please try again later', icon="⚠️")
-        st.stop()
+        try:
+            date = monday_date - datetime.timedelta(weeks=1)
+            fp = './data/operational/'+date+'_CEXPR'+location+'_withsit.shp'
+            data = gpd.read_file(fp)
+        except:
+            st.warning('Recent sea ice thickness product not yet available, please try again later', icon="⚠️")
+            st.stop()
+    return data
 
-#set up the file path and read the shapefile data
-#Eastern Arctic
-try:
-    fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
-    data2 = gpd.read_file(fp)
-except:
-    try:
-        date = monday_date - datetime.timedelta(weeks=1)
-        fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
-        data2 = gpd.read_file(fp)    
-    except:
-        st.warning('Recent sea ice thickness product not yet available, please try again later', icon="⚠️")
-        st.stop()
+date = get_date_lastchart()
+shp_wa = get_shpfile(date, 'WA')
+shp_ea = get_shpfile(date, 'EA')
 
 #Create figure
-fig = px.choropleth(data, geojson=data.geometry, 
-                    locations=data.index, color="SIT",
+fig = px.choropleth(shp_ea, geojson=shp_ea.geometry, 
+                    locations=shp_ea.index, color="SIT",
                     width=1000,
                     height=500,
                     color_continuous_scale="Spectral_r",
                     hover_data = ['SIT'])
-fig2 = px.choropleth(data2, geojson=data2.geometry, 
-                    locations=data2.index, color="SIT",
+fig2 = px.choropleth(shp_wa, geojson=shp_wa.geometry, 
+                    locations=shp_wa.index, color="SIT",
                     width=1000, height=500,
                     color_continuous_scale="Spectral_r", 
                     hover_data=["SIT"])
@@ -83,7 +77,7 @@ fig.update_geos(fitbounds="locations", visible=True,
 
 st.plotly_chart(fig)
 
-merge = pd.concat([data, data2])
+merge = pd.concat([shp_wa, shp_ea])
 download.add_downloadbutton_shp(date, merge)
 
 
