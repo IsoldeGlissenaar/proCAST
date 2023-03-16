@@ -26,14 +26,31 @@ date = f"{date.day:02}"+f"{date.month:02}"+str(date.year)
 
 #set up the file path and read the shapefile data
 #Western Arctic
-fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
-data = gpd.read_file(fp)
-
+try:
+    fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
+    data = gpd.read_file(fp)
+except:
+    try:
+        date = monday_date - datetime.timedelta(weeks=1)
+        fp = './data/operational/'+date+'_CEXPREA_withsit.shp'
+        data = gpd.read_file(fp)
+    except:
+        st.warning('Recent sea ice thickness product not yet available, please try again later', icon="⚠️")
+        st.stop()
 
 #set up the file path and read the shapefile data
 #Eastern Arctic
-fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
-data2 = gpd.read_file(fp)
+try:
+    fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
+    data2 = gpd.read_file(fp)
+except:
+    try:
+        date = monday_date - datetime.timedelta(weeks=1)
+        fp = './data/operational/'+date+'_CEXPRWA_withsit.shp'
+        data2 = gpd.read_file(fp)    
+    except:
+        st.warning('Recent sea ice thickness product not yet available, please try again later', icon="⚠️")
+        st.stop()
 
 #Create figure
 fig = px.choropleth(data, geojson=data.geometry, 
@@ -69,5 +86,16 @@ st.plotly_chart(fig)
 merge = pd.concat([data, data2])
 download.add_downloadbutton_shp(date, merge)
 
+
+
+st.markdown("""
+<style>
+.big-font {
+    font-size:13px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown('<p class="big-font">When using the data please cite:  \nGlissenaar, I. A., Landy, J. C., Babb, D. G., Dawson, G. J., and Howell, S. E. L.: A long-term proxy for sea ice thickness in the Canadian Arctic: 1996–2020, EGUsphere [preprint], https://doi.org/10.5194/egusphere-2023-269, 2023.</p>', unsafe_allow_html=True)
 
     
