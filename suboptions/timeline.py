@@ -48,27 +48,26 @@ def sittrendfig(m,year_1,year_2):
             colorbar = dict(
                 titleside = "right",
                 ),
-            colorbar_title = '[cm/yr]'
+            colorbar_title = 'cm/yr'
             )
         ))
     fig.update_layout(
-        title = ' ',
         geo = dict(
             showland = True,
             landcolor = "rgb(250, 250, 250)",
             subunitcolor = "rgb(217, 217, 217)",
             countrycolor = "rgb(217, 217, 217)",
             countrywidth = 0.5,
-            subunitwidth = 0.5
-        ),
-    )
-    fig.update_geos(fitbounds="locations", visible=True,
-                    projection_type="stereographic",resolution=50)
-    fig.update_layout(
-        autosize=False,
-        height=600,
+            subunitwidth = 0.5),
+        title_text=f' ',
         width=1000,
-        margin={"r":0,"t":0,"l":0,"b":0})
+        height=1000,
+        margin={"r":0,"l":0,"t":0,"b":0},
+        coloraxis_colorbar={'title':'SIT [m]'})
+    fig.update_geos(fitbounds="locations", visible=True,
+                    projection_type="stereographic",resolution=50,
+                   lataxis_showgrid=True, lonaxis_showgrid=True)
+    fig.update_traces(marker=dict(size=9))
 
     st.plotly_chart(fig, use_container_width=True)
 

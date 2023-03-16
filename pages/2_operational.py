@@ -60,12 +60,10 @@ fig = px.choropleth(shp_ea,
                     hover_data = ['SIT'])
 fig2 = px.choropleth(shp_wa, 
                      geojson=shp_wa.geometry, 
-                    locations=shp_wa.index, 
+                     locations=shp_wa.index, 
                      color="SIT",
-     #               width=2000, 
-     #                height=500,
-                    color_continuous_scale="Spectral_r", 
-                    hover_data=["SIT"])
+                     color_continuous_scale="Spectral_r", 
+                     hover_data=["SIT"])
 fig.add_trace(fig2.data[0])    
 fig.update_layout(
         geo = dict(
@@ -79,7 +77,8 @@ fig.update_layout(
         margin={"r":0,"l":0,"t":0,"b":0},
         coloraxis_colorbar={'title':'SIT [m]'})
 fig.update_geos(fitbounds="locations", visible=True,
-                projection_type="stereographic",resolution=50)
+                projection_type="stereographic",resolution=50,
+                lataxis_showgrid=True, lonaxis_showgrid=True)
 
 st.plotly_chart(fig)
 
