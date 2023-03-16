@@ -74,7 +74,7 @@ fig.update_layout(
             countrywidth = 0.5,
             subunitwidth = 0.5),
         title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
-        margin={"r":0,"l":0,"t":10,"b":0},
+        margin={"r":0,"l":0,"t":20,"b":0},
         coloraxis_colorbar={'title':'SIT [m]'})
 fig.update_geos(fitbounds="locations", visible=True,
                 projection_type="stereographic",resolution=50,
