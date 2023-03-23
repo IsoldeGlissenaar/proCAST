@@ -13,7 +13,7 @@ import geopandas as gpd
 import datetime
 import calendar
 
-@st.cache_data
+#@st.cache_data
 def get_date_lastchart():
     #Get date of last ice chart
     today = datetime.date.today()
