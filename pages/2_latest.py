@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header('Operational SIT proxy')
+st.header('Latest SIT proxy')
 st.write("Latest ice conditions:")
 
 #===================================
