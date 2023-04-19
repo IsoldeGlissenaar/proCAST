@@ -4,6 +4,8 @@ import streamlit as st
 st.header('About the SIT proxy product')
 st.write("The sea ice thickness proxy product was created using [Canadian Ice Service](https://www.canada.ca/en/environment-climate-change/services/ice-forecasts-observations/about-ice-service.html) ice charts and a Random Forest Regression. The sea ice thickness proxy product is available for the winter months November-April. The archive of historical proxy sea ice thickness is available from 1996. Operational proxy sea ice thickness maps will be released weekly.")
 
+st.write("This website is created and managed by Isolde Glissenaar, supported by the [Jean Golding Institute](http://www.bristol.ac.uk/golding/) seed corn funding for PGR researchers. Isolde is a postgraduate researcher at the University of Bristol, researching sea ice in the Canadian Arctic. For questions, please contact isolde.glissenaar[@]bristol.ac.uk.")
+
 st.subheader("Frequently Asked Questions")
 
 with st.expander("What is a Random Forest Regression?"):
