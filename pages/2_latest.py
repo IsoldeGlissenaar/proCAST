@@ -1,6 +1,7 @@
 import streamlit as st
 
 st.header('Latest SIT proxy')
+
 st.write("Latest ice conditions:")
 
 #===================================
@@ -73,7 +74,7 @@ fig.update_layout(
             countrycolor = "rgb(217, 217, 217)",
             countrywidth = 0.5,
             subunitwidth = 0.5),
-        title_text=f'SIT {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
+        title_text=f'Sea ice thickness - {date[0:2]} {calendar.month_name[int(date[2:4])]} {str(date[4:8])}',
         margin={"r":0,"l":0,"t":30,"b":0},
         coloraxis_colorbar={'title':'SIT [m]'})
 fig.update_geos(fitbounds="locations", visible=True,
