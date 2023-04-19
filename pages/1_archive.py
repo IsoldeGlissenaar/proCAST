@@ -9,7 +9,7 @@ import timeline
 
 
 st.header('Proxy SIT in Canadian Arctic')
-st.write("Plot proxy sea ice thickness from a Random Forest Regression using CIS ice charts and scatterometer data. Use the panels on the left to select a year (1996-2020) and a month (November-April)")
+st.write("The proxy sea ice thickness archive inlcudes sea ice thickness for November-April for the period 1996-2020. The archive uses both data from the CIS ice charts and scatterometer data (the latter not being used in the weekly 'latest' product as it is not released on an operational basis).")
 
 option = st.selectbox(
     'What would you like to plot?',
