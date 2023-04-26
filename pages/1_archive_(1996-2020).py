@@ -3,13 +3,14 @@ sys.path.append('./suboptions/')
 
 import numpy as np
 import streamlit as st
+import calendar
 
 import figs
 import timeline
 
 
 st.header('Proxy SIT in Canadian Arctic')
-st.write("The proxy sea ice thickness archive inlcudes sea ice thickness for November-April for the period 1996-2020. The archive uses both data from the CIS ice charts and scatterometer data (the latter not being used in the weekly 'latest' product as it is not released on an operational basis).")
+st.write("The proxy sea ice thickness archive inlcudes sea ice thickness for November-April for the period 1996-2020. The archive uses both data from the CIS ice charts and scatterometer data (the latter not being used in the weekly 'latest' product as it is not released on an operational basis). The full archive can be retrieved [here](https://doi.org/10.5281/zenodo.7644084).")
 
 option = st.selectbox(
     'What would you like to plot?',
@@ -17,7 +18,7 @@ option = st.selectbox(
 
 if option=='Sea ice thickness':
     st.write('Select year and month to plot')
-    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
+    m = st.select_slider('Month', options=([11,12,1,2,3,4]), format_func=lambda x: calendar.month_name[x], help='Select a month to display')
     year = st.select_slider('Year (1996-2020)',
                             options=(np.arange(1996,2021,1)),
                             help='Select a year to display')
@@ -25,7 +26,7 @@ if option=='Sea ice thickness':
 
 if option=='Trends':
     st.write('Select starting and end year and month to plot')
-    m = st.select_slider('Month', options=([11,12,1,2,3,4]), help='Select a month to display')
+    m = st.select_slider('Month', options=([11,12,1,2,3,4]), format_func=lambda x: calendar.month_name[x], help='Select a month to display')
     year_1, year_2 = st.select_slider('Range years (1996-2020)',
                                     options=(np.arange(1996,2021,1)),
                                     value=[1996,2020],

@@ -6,6 +6,7 @@ import shapefile as shp  # Requires the pyshp package
 import streamlit as st
 import xarray as xr
 from scipy import stats
+import geopandas as gpd
 from shapely.geometry import Point, shape
 
 
@@ -33,6 +34,17 @@ def sittrendfig(m,year_1,year_2):
     sit['trend'] = (['n'], trend_sit*100)
     sit['text'] = (['n'], (np.round(trend_sit*100,1)).astype(str))
 
+    
+    @st.cache_data
+    def get_shpfile():
+        #set up the file path and read the shapefile data
+        fp = './data/shape_regions/v200_CISIRR_Regions_4326_merge.shp'
+        data = gpd.read_file(fp)
+        return data
+    
+    shp = get_shpfile()
+    shp["geometry"] = (shp.to_crs(shp.estimate_utm_crs()).simplify(1000).to_crs(shp.crs))
+
     #Create figure
     fig = go.Figure(data=go.Scattergeo(
         lon = sit['lon'][~np.isnan(trend_sit)],
@@ -50,6 +62,11 @@ def sittrendfig(m,year_1,year_2):
             colorbar_title = 'cm/yr'
             )
         ))
+    fig2 = px.choropleth(shp, 
+                     geojson=shp.geometry, 
+                     locations=shp.index, 
+                     color=None)
+    fig.add_trace(fig2.data[0])    
     fig.update_layout(
         geo = dict(
             showland = True,
