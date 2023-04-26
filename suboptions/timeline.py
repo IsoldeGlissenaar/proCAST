@@ -66,7 +66,7 @@ def sittrendfig(m,year_1,year_2):
     fig2 = px.choropleth(shp, 
                      geojson=shp.geometry, 
                      locations=shp.index, 
-                     fill=None)
+                     fill="none")
     fig.add_trace(fig2.data[0])    
     fig.update_layout(
         geo = dict(
