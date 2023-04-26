@@ -63,11 +63,14 @@ def sittrendfig(m,year_1,year_2):
             )
         ))
     fig.update_traces(marker=dict(size=9))
-    fig2 = px.choropleth(shp, 
-                     geojson=shp.geometry, 
-                     locations=shp.index, 
-                     color = ~id,opacity=1)
-    fig.add_trace(fig2.data[0])    
+    
+#    fig2 = px.choropleth(shp, 
+#                     geojson=shp.geometry, 
+#                     locations=shp.index)
+#    fig2.update_layout(geo=dict(bgcolor='rgba(0,0,0,1)'))
+#    fig2.update_traces(marker_line_color='black')
+#    fig.add_trace(fig2.data[0])    
+    
     fig.update_layout(
         geo = dict(
             showland = True,
