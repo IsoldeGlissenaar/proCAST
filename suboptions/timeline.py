@@ -62,6 +62,7 @@ def sittrendfig(m,year_1,year_2):
             colorbar_title = 'cm/yr'
             )
         ))
+    fig.update_traces(marker=dict(size=9))
     fig2 = px.choropleth(shp, 
                      geojson=shp.geometry, 
                      locations=shp.index, 
@@ -83,7 +84,6 @@ def sittrendfig(m,year_1,year_2):
     fig.update_geos(fitbounds="locations", visible=True,
                     projection_type="stereographic",resolution=50,
                    lataxis_showgrid=True, lonaxis_showgrid=True)
-    fig.update_traces(marker=dict(size=9))
 
     st.plotly_chart(fig, use_container_width=True)
 
