@@ -43,6 +43,8 @@ def sittrendfig(m,year_1,year_2):
         return data
     
     shp = get_shpfile()
+    options = ['cwa04_00', 'tew02_00','cwa01_00','cea12_00']
+    shp = shp[shp['SHORT_NAME'].isin(options)]
     shp["geometry"] = (shp.to_crs(shp.estimate_utm_crs()).simplify(1000).to_crs(shp.crs))
 
     #Create figure
@@ -64,12 +66,10 @@ def sittrendfig(m,year_1,year_2):
         ))
     fig.update_traces(marker=dict(size=9))
     
-#    fig2 = px.choropleth(shp, 
-#                     geojson=shp.geometry, 
-#                     locations=shp.index)
-#    fig2.update_layout(geo=dict(bgcolor='rgba(0,0,0,1)'))
-#    fig2.update_traces(marker_line_color='black')
-#    fig.add_trace(fig2.data[0])    
+  #  fig2 = px.choropleth(shp, 
+  #                   geojson=shp.geometry, 
+  #                   locations=shp.index)    
+  #  fig.add_trace(fig2.data[0])    
     
     fig.update_layout(
         geo = dict(

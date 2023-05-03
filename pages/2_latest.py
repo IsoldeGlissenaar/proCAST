@@ -12,6 +12,7 @@ import pandas as pd
 import plotly.express as px #if using plotly
 import geopandas as gpd
 import datetime
+import numpy as np
 import calendar
 
 #@st.cache_data
@@ -44,6 +45,12 @@ def get_shpfile(date, location, monday_date):
     return data
 
 date, monday_date = get_date_lastchart()
+
+if np.isin(monday_date.month, [5,6,7,8,9,10]):
+    st.warning('Recent sea ice thickness product is only available in winter months (November-April). Plotted below is the last sea ice thickness map for last winter:', icon="❄️")
+    monday_date = datetime.date(2023, 4, 24)
+           
+           
 shp_wa = get_shpfile(date, 'WA', monday_date)
 shp_ea = get_shpfile(date, 'EA', monday_date)
 
