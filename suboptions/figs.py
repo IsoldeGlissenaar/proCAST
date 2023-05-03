@@ -11,7 +11,7 @@ def sitfig(m,year):
     direc = './data/'
     sit = xr.open_dataset(direc+'proxy_sit_canadianarctic_19962020_'+f"{m:02}"+'.nc')
     y = np.where(sit.year==year)[0][0]
-    p = sit.sit_mean[y,:].values
+    p = sit.sit_mean_corr[y,:].values
     
     #Create figure
     fig = go.Figure(data=go.Scattergeo(

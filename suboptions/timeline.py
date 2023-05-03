@@ -26,7 +26,7 @@ def sittrendfig(m,year_1,year_2):
     trend_sit = np.zeros(sit.dims['n'])
     for i in range(sit.dims['n']):
         x=sit.year[y1:y2+1]
-        y=sit.sit_mean[y1:y2+1,i]
+        y=sit.sit_mean_corr[y1:y2+1,i]
 
         trend_sit[i], intercept, r_value, p_value[i], std_err = stats.linregress(x, y)
 
@@ -56,8 +56,8 @@ def sittrendfig(m,year_1,year_2):
         marker_color = sit['trend'][~np.isnan(trend_sit)],
         marker = dict(
             colorscale = 'RdBu',
-            cmin = -3,
-            cmax = 3,
+            cmin = -5,
+            cmax = 5,
             colorbar = dict(
                 titleside = "right",
                 ),
@@ -140,7 +140,7 @@ def timeline(m, year_1, year_2, name):
                 idx.append(i)
 
     x = sit.year[y1:y2+1]
-    y = np.nanmean(sit.sit_mean[y1:y2+1,idx],axis=1)
+    y = np.nanmean(sit.sit_mean_corr[y1:y2+1,idx],axis=1)
     x = x[np.array(~np.isnan(y))]
     y = y[np.array(~np.isnan(y))]
     y = y[np.array(~np.isnan(x))]
@@ -148,7 +148,7 @@ def timeline(m, year_1, year_2, name):
     slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
     trend_sit = slope
 
-    fig = px.line(x=sit.year[y1:y2+1], y=np.nanmean(sit.sit_mean[y1:y2+1,idx],axis=1),markers=True,
+    fig = px.line(x=sit.year[y1:y2+1], y=np.nanmean(sit.sit_mean_corr[y1:y2+1,idx],axis=1),markers=True,
                 labels={
                     "y": "sea ice thickness (m)",
                     "x": "year"
