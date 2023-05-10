@@ -49,7 +49,7 @@ date, monday_date = get_date_lastchart()
 if np.isin(monday_date.month, [5,6,7,8,9,10]):
     st.warning('Recent sea ice thickness product is only available in winter months (November-April). Plotted below is the last sea ice thickness map for last winter:', icon="❄️")
     monday_date = datetime.date(2023, 4, 24)
-    date = datetime.date(2023,4,24)
+    date = '24042023'
            
            
 shp_wa = get_shpfile(date, 'WA', monday_date)
